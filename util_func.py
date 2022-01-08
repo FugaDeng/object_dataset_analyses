@@ -18,3 +18,11 @@ def categorical_dist(featmtx,categorylabels,categorynames):
                       categorynames[j]).to_numpy()
             catdistmtx[i,j]=np.mean(objdistmtx[tmpind_i,:][:,tmpind_j])
     return catdistmtx
+
+
+def category_distinctiveness(Mtx):
+    n=Mtx.shape
+    msk=np.eye(n[0])
+    Dg=np.mean(Mtx.flatten()[msk.flatten()==1])
+    nonDg=np.mean(Mtx.flatten()[msk.flatten()==0])
+    return nonDg/Dg
